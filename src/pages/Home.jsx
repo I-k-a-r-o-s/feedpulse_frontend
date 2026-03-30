@@ -9,6 +9,8 @@ const Home = () => {
     email: "",
   });
 
+  const descriptionLength = formData.description.length;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -51,7 +53,9 @@ const Home = () => {
                 value={formData.description}
                 onChange={handleChange}
                 required
+                minLength={20}
               ></textarea>
+              <span className="label">{descriptionLength}/20 minimum</span>
 
               <legend className="fieldset-legend">Category</legend>
               <select
