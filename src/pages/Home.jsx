@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { GoCheck } from "react-icons/go";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -35,82 +36,159 @@ const Home = () => {
     }
   };
   return (
-    <div className="hero bg-base-100 min-h-[calc(100vh-4rem)]">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Your Feedback</h1>
-          <form onSubmit={handleSubmit}>
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-              <label className="label">Title</label>
-              <input
-                type="text"
-                className="input"
-                placeholder="Title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                required
-              />
+    <div className="hero bg-base-100 min-h-[calc(100vh-4rem)] py-8 md:py-12">
+      <div className="hero-content w-full px-4 md:px-6">
+        <div className="w-full max-w-2xl">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-base-content mb-2">
+              Share Your Feedback
+            </h1>
+          </div>
 
-              <label className="label">Description</label>
-              <textarea
-                className="textarea h-24"
-                placeholder="Description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                required
-                minLength={20}
-              ></textarea>
-              <span className="label">{descriptionLength}/20 minimum</span>
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="card bg-base-100 shadow-lg border border-base-300">
+              <div className="card-body space-y-6">
+                {/* Title Input */}
+                <div className="form-control w-full">
+                  <label className="label pb-2">
+                    <span className="label-text font-semibold text-base-content">
+                      Feedback Title
+                    </span>
+                    <span className="label-text-alt text-xs">Required</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full focus:input-primary transition-colors"
+                    placeholder="e.g:- Requesting a new feature"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <label className="label">Category</label>
-              <select
-                className="select"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-              >
-                <option disabled value="">
-                  Pick a Category
-                </option>
-                <option>Bug</option>
-                <option>Feature Request</option>
-                <option>Improvement</option>
-                <option>Other</option>
-              </select>
+                {/* Description Input */}
+                <div className="form-control w-full">
+                  <label className="label pb-2">
+                    <span className="label-text font-semibold text-base-content">
+                      Description
+                    </span>
+                    <span className="label-text-alt text-xs">Required</span>
+                  </label>
+                  <textarea
+                    className="textarea textarea-bordered w-full h-28 md:h-32 resize-none focus:textarea-primary transition-colors"
+                    placeholder="Please describe your feedback in detail..."
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                    minLength={20}
+                  />
+                  <label className="label pt-1 flex items-center gap-1">
+                    <span
+                      className={`label-text-alt text-xs flex items-center gap-1 ${
+                        descriptionLength < 20 ? "text-warning" : "text-success"
+                      }`}
+                    >
+                      {descriptionLength < 20 ? (
+                        `${20 - descriptionLength} more characters required`
+                      ) : (
+                        <>
+                          <GoCheck size={20} />
+                          <span>Minimum met</span>
+                        </>
+                      )}
+                    </span>
+                  </label>
+                </div>
 
-              <label className="label">Name</label>
-              <input
-                type="text"
-                className="input"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <span className="label">Optional</span>
+                {/* Category Select */}
+                <div className="form-control w-full">
+                  <label className="label pb-2">
+                    <span className="label-text font-semibold text-base-content">
+                      Category
+                    </span>
+                    <span className="label-text-alt text-xs">Required</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full focus:select-primary transition-colors"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option disabled value="">
+                      Select a category
+                    </option>
+                    <option value="Bug">Bug Report</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <option value="Improvement">Improvement</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
 
-              <label className="label">Email</label>
-              <input
-                type="email"
-                className="input validator"
-                placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <span className="label">Optional</span>
+                {/* Divider */}
+                <div className="divider my-2">Optional Information</div>
 
-              <button className="btn btn-primary" onSubmit={handleSubmit}>
-                {loading ? (
-                  <span className="loading loading-dots loading-sm"></span>
-                ) : (
-                  "Submit"
-                )}
-              </button>
-            </fieldset>
+                {/* Name Input */}
+                <div className="form-control w-full">
+                  <label className="label pb-2">
+                    <span className="label-text font-semibold text-base-content">
+                      Your Name
+                    </span>
+                    <span className="label-text-alt text-xs text-base-content/50">
+                      Optional
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full focus:input-primary transition-colors"
+                    placeholder="Your name (optional)"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Email Input */}
+                <div className="form-control w-full">
+                  <label className="label pb-2">
+                    <span className="label-text font-semibold text-base-content">
+                      Email Address
+                    </span>
+                    <span className="label-text-alt text-xs text-base-content/50">
+                      Optional
+                    </span>
+                  </label>
+                  <input
+                    type="email"
+                    className="input input-bordered validator w-full focus:input-primary transition-colors"
+                    placeholder="your.email@example.com (optional)"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="card-actions justify-center md:justify-end pt-4">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-lg w-full sm:w-auto gap-2"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <span className="loading loading-spinner loading-sm"></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      "Submit Feedback"
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
