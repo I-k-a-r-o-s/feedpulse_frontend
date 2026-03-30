@@ -1,4 +1,5 @@
 import { VscFeedback } from "react-icons/vsc";
+import AdminLoginModal from "./AdminLoginModal";
 
 const Navbar = () => {
   return (
@@ -10,7 +11,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-end">
-        <a className="btn">Admin Login</a>
+        <AdminLoginModal/>
       </div>
     </div>
   );
