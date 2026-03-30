@@ -45,7 +45,7 @@ const Home = () => {
                 required
               />
 
-              <legend className="fieldset-legend">Description</legend>
+              <label className="label">Description</label>
               <textarea
                 className="textarea h-24"
                 placeholder="Description"
@@ -57,7 +57,7 @@ const Home = () => {
               ></textarea>
               <span className="label">{descriptionLength}/20 minimum</span>
 
-              <legend className="fieldset-legend">Category</legend>
+              <label className="label">Category</label>
               <select
                 className="select"
                 name="category"
