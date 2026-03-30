@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const Home = () => {
     name: "",
     email: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const descriptionLength = formData.description.length;
 
@@ -22,9 +24,14 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       console.log(formData);
+      toast.success("Feedback Submitted Successfully!");
     } catch (error) {
+      toast.success("Internal Server Error!!");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -97,7 +104,11 @@ const Home = () => {
               <span className="label">Optional</span>
 
               <button className="btn btn-primary" onSubmit={handleSubmit}>
-                Submit
+                {loading ? (
+                  <span className="loading loading-dots loading-sm"></span>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </fieldset>
           </form>
