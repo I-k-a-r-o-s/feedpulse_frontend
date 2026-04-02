@@ -27,7 +27,6 @@ const Home = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      console.log(formData);
       toast.success("Feedback Submitted Successfully!");
     } catch (error) {
       toast.success("Internal Server Error!!");
