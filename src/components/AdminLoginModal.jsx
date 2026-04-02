@@ -20,6 +20,10 @@ const AdminLoginModal = () => {
       if (data.success) {
         toast.success(data.message);
         localStorage.setItem("token", data.token); //save token in localstorage
+        setFormData({
+          email: "",
+          password: "",
+        });
         document.getElementById("admin_login_modal").close();
         navigate("/admin");
       } else {
