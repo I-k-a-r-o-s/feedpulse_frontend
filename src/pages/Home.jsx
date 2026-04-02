@@ -7,8 +7,8 @@ const Home = () => {
     title: "",
     description: "",
     category: "",
-    name: "",
-    email: "",
+    submitterName: "",
+    submitterEmail: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -145,7 +145,7 @@ const Home = () => {
                     className="input input-bordered w-full focus:input-primary transition-colors"
                     placeholder="Your name (optional)"
                     name="name"
-                    value={formData.name}
+                    value={formData.submitterName}
                     onChange={handleChange}
                   />
                 </div>
@@ -165,7 +165,7 @@ const Home = () => {
                     className="input input-bordered validator w-full focus:input-primary transition-colors"
                     placeholder="your.email@example.com (optional)"
                     name="email"
-                    value={formData.email}
+                    value={formData.submitterEmail}
                     onChange={handleChange}
                   />
                 </div>
