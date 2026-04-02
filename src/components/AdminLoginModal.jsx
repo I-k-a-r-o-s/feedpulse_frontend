@@ -14,12 +14,15 @@ const AdminLoginModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!formData.email||!formData.password){
+      toast.error("Required fields are empty!")
+    }
+    
     try {
       setLoading(true);
       const { data } = await api.post("/api/auth/login", formData);
       if (data.success) {
         toast.success(data.message);
-        localStorage.setItem("token", data.token); //save token in localstorage
         setFormData({
           email: "",
           password: "",
