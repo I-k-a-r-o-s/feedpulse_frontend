@@ -33,8 +33,8 @@ const AdminLoginModal = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Login failed");
-      console.log(error);
+      toast.error(error.response?.data?.message || "Internal Server Error!");
+      console.log("Error response:", error.response?.data);
     } finally {
       setLoading(false);
     }
