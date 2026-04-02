@@ -11,7 +11,7 @@ const Home = () => {
     submitterName: "",
     submitterEmail: "",
   });
-  const { loading, setLoading } = useContext(appContext);
+  const { loading, setLoading, api } = useContext(appContext);
 
   const descriptionLength = formData.description.length;
 
@@ -27,10 +27,24 @@ const Home = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      toast.success("Feedback Submitted Successfully!");
+
+      const { data } = await api.post("/api/feedback/", formData);
+      if (data.success) {
+        toast.success("Feedback Submitted Successfully!");
+        setFormData({
+          title: "",
+          description: "",
+          category: "",
+          submitterName: "",
+          submitterEmail: "",
+        });
+      }
+      else{
+        toast.error(data.message)       
+      }
     } catch (error) {
-      toast.success("Internal Server Error!!");
-      console.log(error);
+      toast.error(error.response?.data?.message || "Internal Server Error!");
+      console.log("Error response:", error.response?.data);
     } finally {
       setLoading(false);
     }
