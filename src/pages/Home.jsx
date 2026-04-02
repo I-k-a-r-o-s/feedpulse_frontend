@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { GoCheck } from "react-icons/go";
+import { appContext } from "../context/AppContext";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Home = () => {
     submitterName: "",
     submitterEmail: "",
   });
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useContext(appContext);
 
   const descriptionLength = formData.description.length;
 

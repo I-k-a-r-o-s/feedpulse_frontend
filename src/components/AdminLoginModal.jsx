@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { LuLogIn } from "react-icons/lu";
+import { appContext } from "../context/AppContext";
 
 const AdminLoginModal = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useContext(appContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -105,7 +106,9 @@ const AdminLoginModal = () => {
                 <button
                   className="btn btn-primary w-full rounded-2xl"
                   type="submit"
-                  onClick={() => document.getElementById("admin_login_modal").close()}
+                  onClick={() =>
+                    document.getElementById("admin_login_modal").close()
+                  }
                 >
                   {loading ? (
                     <span className="loading loading-ring loading-lg"></span>
