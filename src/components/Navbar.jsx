@@ -4,7 +4,14 @@ import { useContext } from "react";
 import { appContext } from "../context/AppContext";
 
 const Navbar = () => {
-  const { admin, logOut, selectedCategory, setSelectedCategory, selectedStatus, setSelectedStatus } = useContext(appContext);
+  const {
+    admin,
+    logOut,
+    selectedCategory,
+    setSelectedCategory,
+    selectedStatus,
+    setSelectedStatus,
+  } = useContext(appContext);
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -17,7 +24,7 @@ const Navbar = () => {
       {admin ? (
         <div className="navbar-center">
           <fieldset className="fieldset flex flex-row">
-            <select 
+            <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="select"
@@ -28,8 +35,8 @@ const Navbar = () => {
               <option value="Improvement">Improvement</option>
               <option value="Other">Other</option>
             </select>
-          
-            <select 
+
+            <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
               className="select"
