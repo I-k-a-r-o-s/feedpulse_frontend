@@ -78,9 +78,9 @@ const Dashboard = () => {
   return (
     <div className="hero bg-base-200 min-h-[calc(100vh-4rem)]">
       <div className="hero-content text-center">
-        {filteredFeedback.length > 0 ? (
-          filteredFeedback.map((item) => (
-            <div className="grid grid-cols-1">
+        <div className="grid grid-cols-1">
+          {filteredFeedback.length > 0 ? (
+            filteredFeedback.map((item) => (
               <div className="card bg-base-100 w-96 shadow-sm" key={item._id}>
                 <div className="card-body">
                   <h2 className="card-title">
@@ -142,17 +142,17 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-32 w-full"></div>
+              <div className="skeleton h-4 w-28"></div>
+              <div className="skeleton h-4 w-full"></div>
+              <div className="skeleton h-4 w-full"></div>
+              <span className="skeleton skeleton-text">No Feedbacks Yet!</span>
             </div>
-          ))
-        ) : (
-          <div className="flex w-52 flex-col gap-4">
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-4 w-28"></div>
-            <div className="skeleton h-4 w-full"></div>
-            <div className="skeleton h-4 w-full"></div>
-            <span className="skeleton skeleton-text">No Feedbacks Yet!</span>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
