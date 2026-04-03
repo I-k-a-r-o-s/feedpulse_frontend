@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { appContext } from "../context/AppContext";
 
 const Navbar = () => {
-  const { admin, logOut } = useContext(appContext);
+  const { admin, logOut, selectedCategory, setSelectedCategory, selectedStatus, setSelectedStatus } = useContext(appContext);
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -17,19 +17,27 @@ const Navbar = () => {
       {admin ? (
         <div className="navbar-center">
           <fieldset className="fieldset flex flex-row">
-            <select defaultValue="Category" className="select">
-              <option disabled={true}>Category</option>
-              <option>Bug</option>
-              <option>Feature Request</option>
-              <option>Improvement</option>
-              <option>Other</option>
+            <select 
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="select"
+            >
+              <option value="">All Categories</option>
+              <option value="Bug">Bug</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="Improvement">Improvement</option>
+              <option value="Other">Other</option>
             </select>
           
-            <select defaultValue="Status" className="select">
-              <option disabled={true}>Status</option>
-              <option>New</option>
-              <option>In Review</option>
-              <option>Resolved</option>
+            <select 
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+              className="select"
+            >
+              <option value="">All Status</option>
+              <option value="New">New</option>
+              <option value="In Review">In Review</option>
+              <option value="Resolved">Resolved</option>
             </select>
           </fieldset>
         </div>

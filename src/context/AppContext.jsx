@@ -8,6 +8,8 @@ export const appContext = createContext();
 const AppContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [admin, setAdmin] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const AppContextProvider = ({ children }) => {
     withCredentials: true,
   });
 
+  //load user from localStorage on initial render
   useEffect(() => {
     const loadAdmin = localStorage.getItem("admin");
     if (loadAdmin) {
@@ -23,6 +26,7 @@ const AppContextProvider = ({ children }) => {
     }
   }, []);
 
+  //save user data to state and localStorage
   const saveAdminToLocalStorage = (adminData) => {
     if (adminData) {
       localStorage.setItem("admin", JSON.stringify(adminData));
@@ -56,6 +60,10 @@ const AppContextProvider = ({ children }) => {
     saveAdminToLocalStorage,
     admin,
     logOut,
+    selectedCategory,
+    setSelectedCategory,
+    selectedStatus,
+    setSelectedStatus,
   };
   return (
     <appContext.Provider value={appValues}>{children}</appContext.Provider>
