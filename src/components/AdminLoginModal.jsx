@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 
 const AdminLoginModal = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loading, setLoading, api, navigate } = useContext(appContext);
+  const { loading, setLoading, api, navigate, saveAdminToLocalStorage } =
+    useContext(appContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,15 +15,17 @@ const AdminLoginModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!formData.email||!formData.password){
-      toast.error("Required fields are empty!")
+    if (!formData.email || !formData.password) {
+      toast.error("Required fields are empty!");
     }
-    
+
     try {
       setLoading(true);
       const { data } = await api.post("/api/auth/login", formData);
       if (data.success) {
+        saveAdminToLocalStorage(data.admin.email);
         toast.success(data.message);
+        console.log(data.admin.email);
         setFormData({
           email: "",
           password: "",
