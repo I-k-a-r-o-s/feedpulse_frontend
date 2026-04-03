@@ -43,10 +43,27 @@ const Dashboard = () => {
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Internal Server Error!");
+      console.log("Error response:", error.response?.data);
     } finally {
       setLoading(false);
     }
   };
+
+  const handleDelete=async(id)=>{
+    try {
+      const {data}=await api.delete(`/api/feedback/${id}`)
+      if(data.success){
+        toast.success(data.message)
+        getAllFeedbacks()
+      }
+      else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Internal Server Error!");
+      console.log("Error response:", error.response?.data);
+    }
+  }
 
   useEffect(() => {
     getAllFeedbacks();
@@ -58,6 +75,7 @@ const Dashboard = () => {
           feedback.map((item) => (
             <div className="card bg-base-100 w-96 shadow-sm" key={item._id}>
               <div className="card-body">
+                
                 <h2 className="card-title">
                   {item.title ? item.title : "Title"}
                   <div className="badge badge-secondary">
@@ -108,6 +126,7 @@ const Dashboard = () => {
                   <div className="badge badge-outline">
                     Date:- {item.updatedAt ? item.updatedAt : "Date"}
                   </div>
+                  <button className="btn btn-error" onClick={()=>handleDelete(item._id)}>Delete</button>
                 </div>
               </div>
             </div>
