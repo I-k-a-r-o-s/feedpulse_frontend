@@ -16,45 +16,22 @@ const Navbar = () => {
       </div>
       {admin ? (
         <div className="navbar-center">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <details>
-                <summary>Category</summary>
-                <ul className="bg-base-100 rounded-t-none p-2">
-                  <li>
-                    <span>Bug</span>
-                  </li>
-                  <li>
-                    <span>Feature Request</span>
-                  </li>
-                  <li>
-                    <span>Improvement</span>
-                  </li>
-                  <li>
-                    <span>Other</span>
-                  </li>
-                </ul>
-              </details>
-            </li>
-          </ul>
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <details>
-                <summary>Status</summary>
-                <ul className="bg-base-100 rounded-t-none p-2">
-                  <li>
-                    <span>New</span>
-                  </li>
-                  <li>
-                    <span>In Review</span>
-                  </li>
-                  <li>
-                    <span>Resolved</span>
-                  </li>
-                </ul>
-              </details>
-            </li>
-          </ul>
+          <fieldset className="fieldset flex flex-row">
+            <select defaultValue="Category" className="select">
+              <option disabled={true}>Category</option>
+              <option>Bug</option>
+              <option>Feature Request</option>
+              <option>Improvement</option>
+              <option>Other</option>
+            </select>
+          
+            <select defaultValue="Status" className="select">
+              <option disabled={true}>Status</option>
+              <option>New</option>
+              <option>In Review</option>
+              <option>Resolved</option>
+            </select>
+          </fieldset>
         </div>
       ) : (
         <></>
