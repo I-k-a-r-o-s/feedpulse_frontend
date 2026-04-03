@@ -1,6 +1,5 @@
 import { VscFeedback } from "react-icons/vsc";
 import AdminLoginModal from "./AdminLoginModal";
-import { Link } from "react-router";
 import { useContext } from "react";
 import { appContext } from "../context/AppContext";
 
@@ -10,10 +9,10 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="navbar-start">
-        <Link to={"/"} className="btn btn-ghost text-xl">
+        <button className="btn btn-ghost text-xl">
           <VscFeedback size={20} />
           FeedPulse
-        </Link>
+        </button>
       </div>
       {admin ? (
         <div className="navbar-center">
