@@ -78,7 +78,13 @@ const Dashboard = () => {
   }, []);
   return (
     <div className="hero bg-base-200 min-h-[calc(100vh-4rem)]">
-      <div className="hero-content text-center">
+      <div className="text-center">
+        <div className="stats stats-vertical lg:stats-horizontal shadow">
+          <div className="stat">
+            <div className="stat-title">Total Feedbacks</div>
+            <div className="stat-value">{feedback.length}</div>
+          </div>
+        </div>
         <div className="grid grid-cols-1">
           {filteredFeedback.length > 0 ? (
             filteredFeedback.map((item) => (
