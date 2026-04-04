@@ -57,3 +57,6 @@ npm run dev
 
 - Landing Page
 ![Landing Page](src/assets/screenshots/landing.jpg)
+
+## If I had more time to build, I'd build 
+- a page where all the feedback are shown with status to the users without needing to sign in. It would let users know the status of their feedbacks, also dulicate feedbacks will be reduced because of it.
