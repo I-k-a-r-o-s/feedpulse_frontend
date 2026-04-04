@@ -25,7 +25,7 @@ const Navbar = () => {
 
       {admin && (
         <div className="navbar-center hidden md:flex gap-2">
-          <div className="join">
+          <div className="join gap-3">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
