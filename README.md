@@ -1,16 +1,57 @@
-# React + Vite
+# FeedPulse Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+FeedPulse is a web app designed to help users submit feedback easily and enable admins to view, analyze, and manage all feedback submissions through a secure dashboard. The system leverages Gemini AI to analyze feedbacks.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React** - For UI
+- **Vite** - Build tool and dev server
+- **DaisyUI** - Prebuilt UI components and support for LLM UI generation
+- **React Router** - For client-side routing
+- **Axios** - For API handling
+- **React Hot Toast** - Toast notifications
+- **React Icons** - Icon library
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to Run Locally
 
-## Expanding the ESLint configuration
+### 1: Clone the Repository
+```bash
+git clone <repository-url>
+cd (folder name)
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Install Dependencies
+```bash
+npm install/ npm i
+```
+
+### 3. Create Environment Variables
+Create a `.env` file in the frontend root directory:
+```env
+VITE_BASE_URL=(your backend API base URL)
+```
+
+### 4. Start the frontend
+```bash
+npm run dev
+```
+### 5. Use Postman to add admin details to MongoDB (For admins)
+```bash
+- Configure the backend and run it.
+- Use backend base url/api/auth/register as the URL
+- Create a POST request with body(raw json),
+{  
+    "email": "admin email",
+    "password": "admin password"
+}
+```
+
+## Screenshots
+
+```
+![Admin Login](src/assets/screenshots/admin_login.jpg)
+![Admin Dashboard](src/assets/screenshots/dashboard.jpg)
+![Landing Page](src/assets/screenshots/landing.jpg)
+```
