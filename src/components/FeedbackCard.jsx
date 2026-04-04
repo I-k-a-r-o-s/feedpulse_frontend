@@ -1,54 +1,133 @@
 const FeedbackCard = ({ item, loading, updateStatus, handleDelete }) => {
+  const sentimentColors = {
+    positive: "badge-success",
+    negative: "badge-error",
+    neutral: "badge-warning",
+  };
+
+  const statusColors = {
+    New: "badge-info",
+    "In Review": "badge-warning",
+    Resolved: "badge-success",
+  };
+
+  const priorityColors = {
+    High: "text-error",
+    Medium: "text-warning",
+    Low: "text-success",
+  };
+
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <div className="card-body">
-        <h2 className="card-title">
-          {item.title ? item.title : "Title"}
-          <div className="badge badge-secondary">
-            {item.ai_sentiment ? item.ai_sentiment : "Sentiment"}
+    <div className="card bg-base-100 shadow-lg border border-base-200 hover:shadow-xl transition-shadow duration-300 max-w-2xl">
+      <div className="card-body space-y-4">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <h2 className="card-title text-lg md:text-xl line-clamp-2">
+            {item.title || "Title"}
+          </h2>
+          <div
+            className={`badge badge-lg ${sentimentColors[item.ai_sentiment?.toLowerCase()] || "badge-neutral"}`}
+          >
+            {item.ai_sentiment || "Sentiment"}
           </div>
-        </h2>
-        <p>
-          Description:-
-          {item.description ? item.description : "description"}
-        </p>
-        <p>AI Summary:-{item.ai_summary ? item.ai_summary : "Summary"}</p>
-        <p>
-          Submitter Name:-
-          {item.submitterName ? item.submitterName : "Not Provided"}
-        </p>
-        <p>
-          Submitter Email:-
-          {item.submitterEmail ? item.submitterEmail : "Not Provided"}
-        </p>
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend">Status:-{item.status}</legend>
+        </div>
+
+        <div className="divider my-0"></div>
+
+        {/* Description Section */}
+        <div className="space-y-2">
+          <p className="text-sm font-semibold text-base-content/70">
+            Description
+          </p>
+          <p className="text-base leading-relaxed">
+            {item.description || "No description provided"}
+          </p>
+        </div>
+
+        {/* AI Summary Section */}
+        {item.ai_summary && (
+          <div className="alert alert-info">
+            <div>
+              <h3 className="font-semibold">AI Summary</h3>
+              <div className="text-sm text-info-content/90">
+                {item.ai_summary}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Submitter Information */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <div className="space-y-1">
+            <p className="font-semibold text-base-content/70">Submitter Name</p>
+            <p className="text-base">{item.submitterName || "Not provided"}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-semibold text-base-content/70">
+              Submitter Email
+            </p>
+            <p className="text-base truncate">
+              {item.submitterEmail || "Not provided"}
+            </p>
+          </div>
+        </div>
+
+        {/* Status Update */}
+        <div className="form-control w-full">
+          <label className="label pb-2">
+            <span className="label-text font-semibold">
+              Status:{" "}
+              <span
+                className={`badge ${statusColors[item.status] || "badge-neutral"}`}
+              >
+                {item.status}
+              </span>
+            </span>
+          </label>
           <select
-            className="select"
+            className="select select-bordered select-sm w-full focus:outline-none focus:ring-2 focus:ring-primary"
             disabled={loading}
             onChange={(e) => updateStatus(item._id, e.target.value)}
           >
-            <option disabled={true} value="">
-              {item.status}
-            </option>
-            <option value={"New"}>New</option>
-            <option value={"In Review"}>In Review</option>
-            <option value={"Resolved"}>Resolved</option>
+            <option value="" hidden></option>
+            <option value="New">New</option>
+            <option value="In Review">In Review</option>
+            <option value="Resolved">Resolved</option>
           </select>
-        </fieldset>
-        <div className="card-actions justify-end">
-          <div className="badge badge-outline">
-            Priority:- {item.ai_priority ? item.ai_priority : "Priority"}
+        </div>
+
+        {/* Metadata Badges */}
+        <div className="space-y-2">
+          <div className="flex flex-wrap gap-2">
+            <div className="badge badge-outline gap-1">
+              <span className="font-semibold">Priority:</span>
+              <span
+                className={
+                  priorityColors[item.ai_priority] || "text-base-content"
+                }
+              >
+                {item.ai_priority || "Not set"}
+              </span>
+            </div>
+            <div className="badge badge-outline gap-1">
+              <span className="font-semibold">Category:</span>
+              {item.ai_category || "Not set"}
+            </div>
+            <div className="badge badge-outline gap-1">
+              <span className="font-semibold">Date:</span>
+              {item.updatedAt
+                ? new Date(item.updatedAt).toLocaleDateString()
+                : "N/A"}
+            </div>
           </div>
-          <div className="badge badge-outline">
-            Category:- {item.ai_category ? item.ai_category : "Category"}
-          </div>
-          <div className="badge badge-outline">
-            Date:- {item.updatedAt ? item.updatedAt : "Date"}
-          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="card-actions justify-end gap-2 pt-2">
           <button
-            className="btn btn-error"
+            className="btn btn-error btn-sm md:btn-md"
             onClick={() => handleDelete(item._id)}
+            disabled={loading}
           >
             Delete
           </button>
