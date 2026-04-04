@@ -45,19 +45,19 @@ const AdminLoginModal = () => {
   return (
     <div>
       <button
-        className="btn btn-primary btn-sm sm:btn-md"
+        className="btn btn-primary btn-sm md:btn-md"
         onClick={() => document.getElementById("admin_login_modal").showModal()}
       >
-        Login
+        Admin Login
       </button>
 
       <dialog
         id="admin_login_modal"
         className="modal modal-bottom sm:modal-middle"
       >
-        <div className="modal-box w-full max-w-md rounded-3xl border border-base-300/60 bg-base-100 p-6 shadow-2xl sm:p-8">
+        <div className="modal-box w-full max-w-md bg-base-100 p-0 shadow-2xl">
           <button
-            className="btn btn-circle btn-ghost btn-sm absolute right-3 top-3"
+            className="btn btn-circle btn-ghost btn-sm absolute right-4 top-4"
             onClick={() => document.getElementById("admin_login_modal").close()}
             aria-label="Close login modal"
             type="button"
@@ -65,81 +65,103 @@ const AdminLoginModal = () => {
             ✕
           </button>
 
-          <div className="text-center">
-            <h3 className="text-2xl font-bold">Please Login to Continue.</h3>
-            <p className="mt-2 text-sm opacity-70">
-              Sign in to manage your cart and place orders faster.
+          {/* Header */}
+          <div className="bg-linear-to-r from-primary to-primary/70 px-6 py-8 text-primary-content">
+            <h3 className="text-2xl font-bold">Admin Dashboard</h3>
+            <p className="mt-1 text-sm opacity-90">
+              Sign in to manage feedback and settings
             </p>
           </div>
 
-          <div className="mt-6">
-            <form onSubmit={handleSubmit} className="w-full">
-              <fieldset className="space-y-4">
-                <div className="space-y-1 text-left">
-                  <label className="label px-0 pb-1 pt-0">
-                    <span className="label-text font-medium">Email</span>
-                  </label>
+          {/* Form */}
+          <div className="p-6">
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
+              {/* Email Input */}
+              <div className="form-control w-full">
+                <label className="label pb-2">
+                  <span className="label-text font-semibold">Email Address</span>
+                </label>
+                <input
+                  type="email"
+                  className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="admin@example.com"
+                  required
+                  value={formData.email}
+                  disabled={loading}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+
+              {/* Password Input */}
+              <div className="form-control w-full">
+                <label className="label pb-2">
+                  <span className="label-text font-semibold">Password</span>
+                </label>
+                <div className="relative">
                   <input
-                    type="email"
-                    className="input input-bordered w-full rounded-2xl"
-                    placeholder="Email"
+                    type={showPassword ? "text" : "password"}
+                    className="input input-bordered w-full pr-12 focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="••••••••"
                     required
-                    value={formData.email}
+                    value={formData.password}
+                    disabled={loading}
                     onChange={(e) =>
                       setFormData((prev) => ({
                         ...prev,
-                        email: e.target.value,
+                        password: e.target.value,
                       }))
                     }
                   />
+                  <button
+                    type="button"
+                    title={showPassword ? "Hide password" : "Show password"}
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className="absolute inset-y-0 right-0 flex items-center px-4 text-base-content/50 hover:text-base-content transition-colors"
+                    disabled={loading}
+                  >
+                    {showPassword ? (
+                      <FaRegEye size={18} />
+                    ) : (
+                      <FaRegEyeSlash size={18} />
+                    )}
+                  </button>
                 </div>
+              </div>
 
-                <div className="space-y-1 text-left">
-                  <label className="label px-0 pb-1 pt-0">
-                    <span className="label-text font-medium">Password</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      className="input input-bordered w-full rounded-2xl pr-12"
-                      placeholder="Password"
-                      required
-                      value={formData.password}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          password: e.target.value,
-                        }))
-                      }
-                    />
-                    <button
-                      type="button"
-                      title={showPassword ? "Hide password" : "Show password"}
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      className="absolute inset-y-0 right-0 flex items-center rounded-r-2xl px-3 text-base-content/60 hover:text-base-content"
-                    >
-                      {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </button>
-                  </div>
-                </div>
-
-                <button
-                  className="btn btn-primary w-full rounded-2xl"
-                  type="submit"
-                >
-                  {loading ? (
-                    <span className="loading loading-ring loading-lg"></span>
-                  ) : (
-                    <>
-                      Login
-                      <LuLogIn size={20} />
-                    </>
-                  )}
-                </button>
-              </fieldset>
+              {/* Submit Button */}
+              <button
+                className="btn btn-primary w-full gap-2"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span className="loading loading-spinner loading-sm"></span>
+                    Signing in...
+                  </>
+                ) : (
+                  <>
+                    <LuLogIn size={20} />
+                    Sign In
+                  </>
+                )}
+              </button>
             </form>
           </div>
+
+          {/* Footer */}
+          <div className="border-t border-base-200 px-6 py-4 text-center text-xs text-base-content/50">
+            Enter your admin credentials to access the dashboard
+          </div>
         </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
       </dialog>
     </div>
   );
