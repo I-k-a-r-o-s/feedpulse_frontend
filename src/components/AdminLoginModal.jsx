@@ -3,6 +3,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { LuLogIn } from "react-icons/lu";
 import { appContext } from "../context/AppContext";
 import toast from "react-hot-toast";
+import { MdClose } from "react-icons/md";
 
 const AdminLoginModal = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -62,7 +63,7 @@ const AdminLoginModal = () => {
             aria-label="Close login modal"
             type="button"
           >
-            ✕
+            <MdClose size={20} />
           </button>
 
           {/* Header */}
