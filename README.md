@@ -49,9 +49,11 @@ npm run dev
 ```
 
 ## Screenshots
-
+- Admin Login modal
 ![Admin Login](src/assets/screenshots/admin_login.jpg)
 
+- Admin Dashboard
 ![Admin Dashboard](src/assets/screenshots/dashboard.jpg)
 
+- Landing Page
 ![Landing Page](src/assets/screenshots/landing.jpg)
