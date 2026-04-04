@@ -56,14 +56,14 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-linear-to-br from-base-100 to-base-200 py-12 px-4 md:px-6 lg:px-8">
+    <div className="min-h-[calc(100vh-4rem)] bg-linear-to-br from-base-100 to-base-200 py-4 md:py-6 px-4 md:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-12 lg:mb-16 space-y-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="text-center mb-4 md:mb-6 space-y-2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
             Share Your Feedback
           </h1>
-          <p className="text-lg text-base-content/70 max-w-xl mx-auto">
+          <p className="text-sm md:text-base text-base-content/70 max-w-xl mx-auto">
             Help us improve by sharing your thoughts, suggestions, and bug
             reports. Your feedback is invaluable to our development.
           </p>
@@ -71,7 +71,7 @@ const Home = () => {
 
         {/* Form Card */}
         <div className="card bg-base-100 shadow-2xl border border-base-200">
-          <form onSubmit={handleSubmit} className="card-body space-y-6">
+          <form onSubmit={handleSubmit} className="card-body space-y-3 p-4 md:p-6">
             {/* Title Input */}
             <div className="form-control w-full">
               <label className="label pb-2">
@@ -101,7 +101,7 @@ const Home = () => {
                 <span className="badge badge-sm badge-error">Required</span>
               </label>
               <textarea
-                className="textarea textarea-bordered w-full h-32 md:h-40 resize-none text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                className="textarea textarea-bordered w-full h-20 md:h-24 resize-none text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 placeholder="Please describe your feedback in detail. Include context, use cases, and any relevant information..."
                 name="description"
                 value={formData.description}
