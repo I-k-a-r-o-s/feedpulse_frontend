@@ -91,7 +91,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold text-base-content">
-            Feedback Dashboard
+            Dashboard
           </h1>
           <p className="text-base-content/70">
             Manage and track all feedback submissions

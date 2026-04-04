@@ -71,7 +71,10 @@ const Home = () => {
 
         {/* Form Card */}
         <div className="card bg-base-100 shadow-2xl border border-base-200">
-          <form onSubmit={handleSubmit} className="card-body space-y-3 p-4 md:p-6">
+          <form
+            onSubmit={handleSubmit}
+            className="card-body space-y-3 p-4 md:p-6"
+          >
             {/* Title Input */}
             <div className="form-control w-full">
               <label className="label pb-2">

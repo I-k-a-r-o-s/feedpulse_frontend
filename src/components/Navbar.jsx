@@ -57,10 +57,17 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         {admin && (
           <div className="dropdown dropdown-end md:hidden">
-            <button className="btn btn-ghost btn-circle btn-sm" tabIndex={0} aria-label="Filter menu">
+            <button
+              className="btn btn-ghost btn-circle btn-sm"
+              tabIndex={0}
+              aria-label="Filter menu"
+            >
               <RxDropdownMenu size={20} />
             </button>
-            <ul tabIndex={0} className="dropdown-content z-1 menu p-2 shadow bg-base-100 rounded-box w-52">
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-1 menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
               <li>
                 <select
                   value={selectedCategory}
@@ -91,10 +98,7 @@ const Navbar = () => {
         )}
 
         {admin ? (
-          <button 
-            className="btn btn-outline btn-sm md:btn-md" 
-            onClick={logOut}
-          >
+          <button className="btn btn-outline btn-sm md:btn-md" onClick={logOut}>
             Logout
           </button>
         ) : (

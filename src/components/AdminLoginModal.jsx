@@ -79,7 +79,9 @@ const AdminLoginModal = () => {
               {/* Email Input */}
               <div className="form-control w-full">
                 <label className="label pb-2">
-                  <span className="label-text font-semibold">Email Address</span>
+                  <span className="label-text font-semibold">
+                    Email Address
+                  </span>
                 </label>
                 <input
                   type="email"

@@ -46,7 +46,7 @@ const FeedbackCard = ({ item, loading, updateStatus, handleDelete }) => {
 
         {/* AI Summary Section */}
         {item.ai_summary && (
-          <div className="alert alert-info">            
+          <div className="alert alert-info">
             <div>
               <h3 className="font-semibold">AI Summary</h3>
               <div className="text-sm text-info-content/90">
