@@ -51,5 +51,7 @@ npm run dev
 ## Screenshots
 
 ![Admin Login](src/assets/screenshots/admin_login.jpg)
+
 ![Admin Dashboard](src/assets/screenshots/dashboard.jpg)
+
 ![Landing Page](src/assets/screenshots/landing.jpg)
